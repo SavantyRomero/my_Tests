@@ -37,12 +37,12 @@ if(isset($_POST['adress']) && isset($_POST['contact'])&& isset($_POST['person'])
     mysqli_close($link);
 }
 
-if(isset($_POST['phone']) && isset($_POST['number'])){
+if(isset($_POST['phone']) && isset($_POST['tel_number'])){
     $link = mysqli_connect($host, $user, $password, $database)
     or die("Ошибка " . mysqli_error($link));
     $phone = htmlentities(mysqli_real_escape_string($link, $_POST['phone']));
-    $number = htmlentities(mysqli_real_escape_string($link, $_POST['number']));
-    $query ="INSERT INTO phones (phone, number) VALUES('$phone',' $number')";
+    $tel_number = htmlentities(mysqli_real_escape_string($link, $_POST['tel_number']));
+    $query ="INSERT INTO phones (phone, tel_number) VALUES('$phone',' $tel_number')";
     $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
     if($result)
     {
@@ -51,8 +51,8 @@ if(isset($_POST['phone']) && isset($_POST['number'])){
     mysqli_close($link);
 }
 ?>
-<h2>Введіть дані про компанію</h2>
 <form method="POST">
+    <h2>Введіть дані про компанію</h2>
     <p>Назва компанії:<br>
         <input type="text" name="comp_name" />
     </p>
@@ -80,11 +80,9 @@ if(isset($_POST['phone']) && isset($_POST['number'])){
         <input type="text" name="phone" />
     </p>
     <p>Номер телефону / контакт skype: <br>
-        <input type="text" name="number" />
+        <input type="text" name="tel_number" />
     </p>
     <input type="submit" value="Добавить">
 </form>
-<br><br><br>
-
 </body>
 </html>
